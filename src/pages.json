@@ -1,16 +1,50 @@
-{
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+{   
+	"easycom": {
+		"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
+	},
+	"pages": [ 
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationBarTitleText": "百景"
+			}
+		},
+		{
+			"path":"pages/project/project",
+			"style":{
+				"navigationBarTitleText": "百景"
+				
+			}
+		},
+		{
+			"path": "pages/contacts/contacts",
+			"style": {
+				"navigationBarTitleText": "百景"
 			}
 		}
+
 	],
+
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
-	}
+	},
+	"tabBar": {
+		"color": "#333333",
+		"selectedColor": "#333333",
+		"list": [{
+		  "pagePath": "pages/index/index",
+		  "text": "首页",
+		  "iconPath": "static/shouye_nor.png",
+		  "selectedIconPath": "static/shouye_sel.png"
+		},
+		{
+		  "pagePath": "pages/contacts/contacts",
+		  "text": "咨询",
+		  "iconPath": "static/lxwm_nor.png",
+		  "selectedIconPath": "static/lxwm_sel.png"
+		  }]
+		}
 }

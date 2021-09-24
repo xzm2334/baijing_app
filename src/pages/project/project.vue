@@ -4,7 +4,7 @@
         <view class="page">
         <view class="content"> 
         <view class="uni-padding-wrap uni-common-mt">
-            <video class="myVideo" :src="project.uil" show-mute-btn="ture" :poster="project.img" ></video>
+            <video class="myVideo" :src="project.video_uil" show-mute-btn="ture"  ></video>
         </view>
         <view class="about">
             <view>
@@ -14,14 +14,21 @@
 			</block>
             </view>
             <view class="date">
-                <text>上传时间：{{project.creationTime}}</text>
+                <text>上传时间：{{$u.timeFormat(this.project.created_at,'yyyy-mm-dd')}}</text>
             </view>
             <text class="middleSized">项目合作方：{{project.company}}</text>
             <text class="middleSized">项目投入资金：{{project.money}}</text>
             <text class="middleSized">项目周期：{{project.cycle}}</text>
         </view>
         <view class="particulars">
-            <u-parse :html="project.Introduction"></u-parse>
+            <view>
+                <h2 class="title">产品详情</h2>
+                <text class="particular">{{project.particulars}}</text>
+                <h2 class="title">产品展示</h2>
+                <block v-for="(i,index) in show " :key="index">
+                <image style="width: 100%; height: 360rpx;border-radius: 20rpx;" :src="i.UIL"></image>
+                </block>
+            </view>
         </view>
         </view>
         <view class="footer" @click="toPage">联系我们</view>
@@ -35,16 +42,17 @@
     export default {
     onLoad: function (option){
             this.id = option.id
- 			this.$u.get('http://hello-app.test/api/client/project/' + this.id )
+ 			this.$u.get('http://hello-app.test/api/client/projects/' + this.id )
 				.then((res)=>{
 					this.project = res
-				
+                    this.show =JSON.parse(res.show)
 				})                 
     },    
                 data(){
                     
                     return{
                         id:'',
+                        show:[],
                         project:{
                         }
                     }
@@ -132,5 +140,13 @@
     box-sizing: border-box;
   flex: 1;
   overflow-y: auto;
+}
+.title{
+    font-size: 32rpx;
+    color: #000000;
+}
+.particular{
+    font-size: 28rpx;
+    color: #666666;
 }
 </style>

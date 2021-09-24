@@ -3,13 +3,13 @@
 			<u-tabs :list="list" :current="current" :is-scroll="true" @change="onTabChange" bg-color="#EEEEEE" height="88"></u-tabs>	
 		<view class = "content">
 		<view class="lunbo" >
-			<u-swiper height="260" :list="banner" img-mode=“aspectFit” indicator-pos="bottomRight"></u-swiper>
+			<u-swiper height="260" :list="banner" name="image_url" img-mode=“aspectFit” indicator-pos="bottomRight"></u-swiper>
 		</view>
 		<!-- <u-gap height="40" /> -->
 
 		<block  v-for="(item,index) in project" :key="index">
 		<view class="project" @click="goProject(item.id)">
-			<image style="width: 670rpx; height: 360rpx;border-radius: 20rpx;" :src="item.uil"></image>
+			<image style="width: 670rpx; height: 360rpx;border-radius: 20rpx;" :src="item.image_uil"></image>
 			<view class="title">
 			<text class="projectName">项目名称: {{item.name}}</text>
 			<block v-for="i in item.hot" :key="i">
@@ -47,11 +47,11 @@
 			.then((res)=>{
 					this.list = res
 					this.id = this.list[0].id
-					this.$u.get('http://hello-app.test/api/client/banners/' + this.id )
+					this.$u.get('http://hello-app.test/api/client/categories/banners/' + this.id )
 					.then((res)=>{
 					this.banner = res
 				})
-					this.$u.get('http://hello-app.test/api/client/projects/' + this.id )
+					this.$u.get('http://hello-app.test/api/client/categories/projects/' + this.id )
 					.then((res)=>{
 					this.project = res
 					console.log(res);
@@ -62,11 +62,11 @@
 			onTabChange(index){
 				this.current = index
 				this.id = this.list[index].id
-				this.$u.get('http://hello-app.test/api/client/banners/' + this.id )
+				this.$u.get('http://hello-app.test/api/client/categories/banners/' + this.id )
 				.then((res)=>{
 					this.banner = res
 				})
-				this.$u.get('http://hello-app.test/api/client/projects/' + this.id )
+				this.$u.get('http://hello-app.test/api/client/categories/projects/' + this.id )
 				.then((res)=>{
 					this.project = res
 				})

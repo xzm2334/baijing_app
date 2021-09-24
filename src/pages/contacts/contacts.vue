@@ -4,7 +4,7 @@
     <view class="card">
         <view class="box1">            
                 <image class="image"
-                    :src="item.uil"
+                    :src="item.qr_image"
                     mode="scaleToFill"
                 />
             <view class="characters">
@@ -34,7 +34,7 @@
 <script>
 export default {
     onLoad(){
-        this.$u.get('http://hello-app.test/api/client/linkman"')
+        this.$u.get('http://hello-app.test/api/client/linkmen')
         .then((res)=>{
             this.contacts=res
         })
